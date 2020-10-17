@@ -1,14 +1,12 @@
 const fetch = require('node-fetch')
-const { parse } = require('path')
 const Sheet = require('./sheet')
 
 
 const scrapePage = async (index) => {
+    // get jobs from github api 
     let url = `https://jobs.github.com/positions.json?page=${index}`
     let res = await fetch(url)
     const data = await res.json()
-
-    // get jobs from github api 
 
     //parsed data
     let parsedData = data.map(job => { 
@@ -25,9 +23,8 @@ const scrapePage = async (index) => {
     return parsedData;
 }
 
-
+// MAIN FUNCTION
 const init = async () => {
-
     let i = 1;
     let results = []
     while(true){
